@@ -39,7 +39,7 @@ export default function LoginPage() {
 
     const redirectTo =
       typeof window !== 'undefined'
-        ? `${window.location.origin}/dashboard`
+        ? `${window.location.origin}/auth/callback?next=/dashboard`
         : undefined;
 
     const { error } = await supabase.auth.signInWithOAuth({

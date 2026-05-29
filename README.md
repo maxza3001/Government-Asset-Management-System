@@ -70,7 +70,7 @@ https://your-project.supabase.co/auth/v1/callback
 
 แทน `your-project.supabase.co` ด้วย Supabase project URL ของคุณ
 
-หลังเปิด Google provider แล้ว ปุ่ม Google จะ redirect ไป Google OAuth และกลับมาที่ `/dashboard`
+หลังเปิด Google provider แล้ว ปุ่ม Google จะ redirect ไป Google OAuth กลับมาที่ `/auth/callback` เพื่อสร้าง session แล้วค่อยส่งต่อไป `/dashboard`
 
 ### Create Admin User
 
@@ -124,7 +124,9 @@ https://your-app.vercel.app
 
 ```text
 http://localhost:3000/**
+http://localhost:3000/auth/callback
 https://your-app.vercel.app/**
+https://your-app.vercel.app/auth/callback
 ```
 
 ถ้าใช้ Vercel preview deployment หลาย URL สามารถเพิ่ม pattern ของ preview URL เพิ่มได้ตามทีม/บัญชี Vercel ของคุณ
@@ -240,6 +242,16 @@ pnpm lint
 pnpm build
 pnpm dev
 ```
+
+gh auth logout
+gh auth login
+git push -u origin main
+
+
+git status
+git add .
+git commit -m "Update auth callback flow"
+git push
 
 ## References
 

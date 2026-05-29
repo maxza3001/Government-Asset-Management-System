@@ -11,9 +11,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const [checkingSession, setCheckingSession] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
+  const isPublicAuthPage = pathname === '/login' || pathname.startsWith('/auth/callback');
 
   useEffect(() => {
-    if (pathname === '/login') {
+    if (isPublicAuthPage) {
       return;
     }
 
@@ -35,7 +36,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session && pathname !== '/login') {
+      if (!session && !isPublicAuthPage) {
         router.replace('/login');
       }
     });
@@ -44,10 +45,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, [pathname, router]);
+  }, [isPublicAuthPage, router]);
   
   // Don't show layout on login page
-  if (pathname === '/login') {
+  if (isPublicAuthPage) {
     return <>{children}</>;
   }
 
