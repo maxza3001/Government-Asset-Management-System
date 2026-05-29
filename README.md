@@ -249,8 +249,8 @@ git push -u origin main
 
 
 git status
-git add .
-git commit -m "Update auth callback flow"
+git add
+git commit
 git push
 
 ## References
