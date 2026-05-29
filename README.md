@@ -249,7 +249,7 @@ git push -u origin main
 
 
 git status
-git add
+git add .
 git commit
 git push
 
